@@ -202,10 +202,12 @@ export class NzDemoTreeDirTreeComponent implements OnInit {
 
   dragStart(event: NzFormatEmitEvent): void {
     // disallow drag if root or search
+    event.dataTransfer.setData("text/plain","www.banggood.com");
     this.activedNode = null;
-    this.dragNodeElement = event.event.srcElement;
+    let dragElement =  event.event.srcElement ? event.event.srcElement :event.event.target;
+    this.dragNodeElement = dragElement;
     if (this.dragNodeElement.className.indexOf('is-dragging') === -1) {
-      this.dragNodeElement.className = event.event.srcElement.className + ' is-dragging';
+      this.dragNodeElement.className = dragElement.className + ' is-dragging';
     }
   }
 
